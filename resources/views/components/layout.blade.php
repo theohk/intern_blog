@@ -25,7 +25,7 @@
           <a class="btn btn-sm btn-outline-secondary mr-2" href="/create-post">Create Post</a>
           <form action="/logout" method="POST" class="d-inline">
             @csrf
-            <button class="btn btn-sm btn-outline-secondary">Sign Out</button>
+            <button class="btn btn-sm btn-outline-secondary">Sign Outt</button>
           </form>
         </div>
         @else 
