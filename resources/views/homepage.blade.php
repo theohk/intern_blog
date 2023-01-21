@@ -1,50 +1,31 @@
 <x-layout>
-      <div class="container py-md-5">
-        <div class="row align-items-center">
-          <div class="col-lg-7 py-3 py-md-5" style="background-image: url('assets/images/bg.jpg'); height: 55vh; object-fit: fill;">
-            <h1 class="display-3 text-center text-white">Blog Blog Blog</h1>
-            <p class="lead text-center text-white">Omg Blog Much Blog Such Blog Omg Omg</p>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  
+  
+  <div class="container">
+      <div class="col-md-12">
+          <h1>Alice in Wonderland, part dos</h1>
+          <p>'You ought to be ashamed of yourself for asking such a simple question,' added the Gryphon; and then they both sat silent and looked at poor Alice, who felt ready to sink into the earth. At last the Gryphon said to the Mock Turtle, 'Drive on, old fellow! Don't be all day about it!' and he went on in these words:
+          'Yes, we went to school in the sea, though you mayn't believe it—'
+          'I never said I didn't!' interrupted Alice.
+          'You did,' said the Mock Turtle.</p>
+          <div>
+          <span class="badge">Posted 2012-08-02 20:47:04</span><div class="pull-right"><span class="label label-default">alice</span> <span class="label label-primary">story</span> <span class="label label-success">blog</span> <span class="label label-info">personal</span> <span class="label label-warning">Warning</span>
+          <span class="label label-danger">Danger</span></div>         
           </div>
-          <div class="col-lg-5 pl-lg-5 pb-3 py-lg-5">
-            <form action="/register" method="POST" id="registration-form">
-              @csrf
-              <div class="form-group">
-                <label for="username-register" class="text-muted mb-1"><small>Username</small></label>
-                <input name="username" value="{{old('username')}}" id="username-register" class="form-control" type="text" placeholder="Pick a username" autocomplete="off" />
-                @error('username')
-                <p class="m-0 small alert alert-danger shadow-sm">{{$message}}</p>
-                @enderror
-              </div>
-  
-              <div class="form-group">
-                <label for="email-register" class="text-muted mb-1"><small>Email</small></label>
-                <input name="email" value="{{old('email')}}" id="email-register" class="form-control" type="text" placeholder="you@example.com" autocomplete="off" />
-                @error('email')
-                <p class="m-0 small alert alert-danger shadow-sm">{{$message}}</p>
-                @enderror
-              </div>
-  
-              <div class="form-group">
-                <label for="password-register" class="text-muted mb-1"><small>Password</small></label>
-                <input name="password" id="password-register" class="form-control" type="password" placeholder="Create a password" />
-                @error('password')
-                <p class="m-0 small alert alert-danger shadow-sm">{{$message}}</p>
-                @enderror
-              </div>
-  
-              <div class="form-group">
-                <label for="password-register-confirm" class="text-muted mb-1"><small>Confirm Password</small></label>
-                <input name="password_confirmation" id="password-register-confirm" class="form-control" type="password" placeholder="Confirm password" />
-                @error('password_confirmation')
-                <p class="m-0 small alert alert-danger shadow-sm">{{$message}}</p>
-                @enderror
-              </div>
-  
-              <button type="submit" class="py-3 mt-4 btn btn-lg btn-info btn-block">Sign up</button>
-            </form>
-          </div>
-        </div>
-      </div>
+          <hr>
+          <h1>Revolution has begun!</h1>
+          <p>'I am bound to Tahiti for more men.'
+              'Very good. Let me board you a moment—I come in peace.' With that he leaped from the canoe, swam to the boat; and climbing the gunwale, stood face to face with the captain.
+              'Cross your arms, sir; throw back your head. Now, repeat after me. As soon as Steelkilt leaves me, I swear to beach this boat on yonder island, and remain there six days. If I do not, may lightning strike me!'A pretty scholar,' laughed the Lakeman. 'Adios, Senor!' and leaping into the sea, he swam back to his comrades.</p>
+          <div>
+              <span class="badge">Posted 2012-08-02 20:47:04</span><div class="pull-right"><span class="label label-default">alice</span> <span class="label label-primary">story</span> <span class="label label-success">blog</span> <span class="label label-info">personal</span> <span class="label label-warning">Warning</span>
+          <span class="label label-danger">Danger</span></div>
+      </div>     
+      <hr>
+  </div>
 </x-layout>
 
 

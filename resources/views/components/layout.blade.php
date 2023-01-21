@@ -15,7 +15,7 @@
   <body>
     <header class="header-bar mb-3">
       <div class="container d-flex flex-column flex-md-row align-items-center p-3">
-        <h4 class="my-0 mr-md-auto font-weight-normal"><a href="/" class="text-dark">FakteaApp</a></h4>
+        <h4 class="my-0 mr-md-auto font-weight-normal"><a href="/homepage" class="text-dark">OurApp</a></h4>
         
         @auth
         <div class="flex-row my-3 my-md-0">
@@ -40,7 +40,7 @@
               <input name="loginpassword" class="form-control form-control-sm input-dark" type="password" placeholder="Password" />
             </div>
             <div class="col-md-auto">
-              <button class="btn btn-outline-dark btn-sm">Sign In</button>
+              <button class="btn btn-primary btn-sm">Sign In</button>
             </div>
           </div>
         </form>

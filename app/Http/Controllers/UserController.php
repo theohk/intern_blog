@@ -10,9 +10,8 @@ class UserController extends Controller
 {
     //
 
-    public function profile(User $pizza) {
-
-        return view('profile-posts', ['username' => $pizza->username]);
+    public function profile(User $user) {
+        return view('profile-posts', ['username' => $user->username, 'posts' => $user->posts()->latest()->get(), 'postCount' => $user->posts()->count()]);
     }
 
     public function logout() {
@@ -21,13 +20,25 @@ class UserController extends Controller
 
     }
 
-    public function showCorrectHomepage(){
+    // public function showCorrectHomepage(User $user){
+    //     if(auth()->check()) {
+    //         $user = auth()->user();
+    //         return view('homepage-feed', ['postCount' => $user->posts()->count()]);
+    //     }
+    //     else {
+    //         return view('homepage');
+    //     }
+    // }
+
+    public function showCorrectHomepage(User $user){
         if(auth()->check()) {
-            return view('homepage-feed');
+            $user = auth()->user();
+            return view('homepage-feed', ['postCount' => $user->posts()->count()]);
         }
         else {
             return view('homepage');
         }
+        
     }
 
     public function login(Request $request) {
