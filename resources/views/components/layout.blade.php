@@ -67,6 +67,7 @@
     @endif
 
     {{$slot}}
+    
 
     {{-- <!-- footer begins -->
     <footer class="border-top text-center small text-muted py-3">

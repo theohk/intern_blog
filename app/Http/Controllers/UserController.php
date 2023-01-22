@@ -36,7 +36,7 @@ class UserController extends Controller
             return view('homepage-feed', ['postCount' => $user->posts()->count()]);
         }
         else {
-            return view('homepage');
+            return redirect()->action([PostController::class, 'index']);
         }
         
     }
