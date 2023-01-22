@@ -20,7 +20,9 @@
       </div>     
       <hr>
 
-
+      <div class="d-flex justify-content-left">
+        {!! $post->links('pagination::simple-bootstrap-5') !!}
+      </div>
 
 
 
