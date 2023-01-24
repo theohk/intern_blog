@@ -63,7 +63,9 @@ class UserController extends Controller
         }
     }
 
-
+    public function userRegister(){
+        return view('register');
+   }
     public function register(Request $request) {
         $data = $request->validate([
             'username' => ['required', 'min:3', 'max:20', Rule::unique('users', 'username')],

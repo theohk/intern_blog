@@ -1,7 +1,8 @@
 <x-layout>
-    <div class="container py-md-5 container--narrow">
+
+    <div class="container-sm pt-3 ms-5">
         <h2>
-          <img class="avatar-small" src="https://gravatar.com/avatar/b9408a09298632b5151200f3449434ef?s=128" /> {{$username}}
+          <img class="avatar-small border border-circle border-primary border-opacity-75" src="{{url('/assets/images/avatar2.png')}}" /> {{$username}}
           <form class="ml-2 d-inline" action="#" method="POST">
             <button class="btn btn-primary btn-sm">Follow <i class="fas fa-user-plus"></i></button>
             <!-- <button class="btn btn-danger btn-sm">Stop Following <i class="fas fa-user-times"></i></button> -->
@@ -17,8 +18,9 @@
         <div class="list-group">
           @foreach($posts as $post)
           <a href="/post/{{$post->id}}" class="list-group-item list-group-item-action">
-            <img class="avatar-tiny" src="https://gravatar.com/avatar/b9408a09298632b5151200f3449434ef?s=128" />
-            {{-- <strong>{{$post->title}}</strong> on {{$post->created_at->format('n/j/Y')}} --}}
+            <img class="avatar-tiny border border-circle border-primary border-opacity-75" src="{{url('/assets/images/avatar2.png')}}" />
+            <strong>{{$post->title}}</strong>
+            {{-- {{$post->created_at->format('n/j/Y')}} --}}
             <div class="body-content">
               {!! $post->body !!}
             </div>
@@ -26,4 +28,5 @@
           @endforeach
         </div>
       </div>
+      
 </x-layout>

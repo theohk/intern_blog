@@ -1,4 +1,7 @@
 <x-layout>
+  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <div class="container py-md-5 container--narrow">
         <form action="/create-post" method="POST">
         @csrf
@@ -10,9 +13,9 @@
             @enderror
         </div>
   
-          <div class="form-group">
-            <label for="post-body" class="text-dark mb-1"><h4>Body Content</h4></label>
-            <textarea name="body" id="post-body" class="body-content tall-textarea form-control" type="text">{{old('body')}}</textarea>
+          <div class="form-group vh-50">
+            <label for="editor" class="text-dark mt-2 mb-1"><h4>Body Content</h4></label>
+            <textarea name="body" rows="8" id="editor" class="body-content tall-textarea form-control" type="text">{{old('body')}}</textarea>
             @error('body')
             <p class='m-0 small alert alert-danger shadow-sm'>{{$message}}</p>
             @enderror
@@ -20,7 +23,7 @@
 
         <div class="mb-3">
           <label for="tagInput" class="form-label">Select tag</label>
-          <select name="tags_id[]" multiple class="form-select" aria-label="Select tag" id="tagInput" value="Select tag {{ old('tag') }}">
+          <select name="tags_id" multiple class="form-select" aria-label="Select tag" id="tagInput" value="Select tag {{ old('tag') }}">
               @foreach ($tags as $item)
                   <option value="{{ $item->id }}">{{ $item->tagName }}</option>
               @endforeach
@@ -29,12 +32,25 @@
                 <p class='m-0 small alert alert-danger shadow-sm'>{{$message}}</p>
               @enderror
       </div>
-
-
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
   
           <button class="btn btn-primary">Save New Post</button>
         </form>
       </div>
+
+      
+
+
+@section('scripts')
+        <script>
+                ClassicEditor
+                        .create( document.querySelector( '#editor' ) )
+                        .then( editor => {
+                                console.log( editor );
+                        } )
+                        .catch( error => {
+                                console.error( error );
+                        } );
+        </script>
+@endsection
+
 </x-layout>

@@ -16,6 +16,7 @@ use App\Http\Controllers\UserController;
 */
 //User related routes
 Route::get('/', [Usercontroller::class, 'showCorrectHomepage'])->name('login');
+Route::get('/register', [UserController::class, "userRegister" ])->middleware('guest');
 Route::post('/register', [UserController::class, "register" ])->middleware('guest');
 Route::post('/login', [UserController::class, "login" ])->middleware('guest');
 Route::post('/logout', [UserController::class, "logout" ])->middleware('mustBeLoggedIn');

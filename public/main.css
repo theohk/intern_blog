@@ -3,7 +3,9 @@ body,
   font-family: "Source Sans Pro", sans-serif;
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale !important;
+  padding-top: 65px; 
 }
+
 
 .header-bar {
   background-color: #ffffff;
@@ -388,4 +390,5 @@ textarea.tall-textarea {
   outline: none;
   font-size: 0.75rem;
 }
+
 

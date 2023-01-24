@@ -45,7 +45,7 @@ class PostController extends Controller
         ]);
 
         $data['title'] = strip_tags($data['title']);
-        $data['body'] = strip_tags($data['body']);
+        $data['body'] = $data['body'];
         $data['user_id'] = auth()->id();
 
         $newPost = Post::create($data);
