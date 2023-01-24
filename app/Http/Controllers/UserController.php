@@ -41,13 +41,19 @@ class UserController extends Controller
         
     }
 
+
+    public function template(){
+             return view('template');
+        }
+        
+
     public function login(Request $request) {
-        $incomingFields = $request->validate([
+        $data = $request->validate([
             'loginusername' => 'required',
             'loginpassword' => 'required'
         ]);
 
-        if(auth()->attempt(['username' => $incomingFields['loginusername'], 'password' => $incomingFields['loginpassword']])) {
+        if(auth()->attempt(['username' => $data['loginusername'], 'password' => $data['loginpassword']])) {
             $request -> session() -> regenerate();
             return redirect('/')->with('success', 'You have successfully logged in.');
         }
@@ -59,15 +65,15 @@ class UserController extends Controller
 
 
     public function register(Request $request) {
-        $incomingFields = $request->validate([
+        $data = $request->validate([
             'username' => ['required', 'min:3', 'max:20', Rule::unique('users', 'username')],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
             'password' => ['required', 'min:6', 'confirmed']
         ]);
 
-        $incomingFields['password'] = bcrypt($incomingFields['password']);
+        $data['password'] = bcrypt($data['password']);
 
-        $user = User::create($incomingFields);
+        $user = User::create($data);
         auth()->login($user);
         return redirect('/')->with('success', 'Thank you for creating an account');
     }

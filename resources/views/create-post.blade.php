@@ -17,6 +17,18 @@
             <p class='m-0 small alert alert-danger shadow-sm'>{{$message}}</p>
             @enderror
         </div>
+
+        <div class="mb-3">
+          <label for="tagInput" class="form-label">Select tag</label>
+          <select name="tags_id" class="form-select" aria-label="Select tag" id="tagInput" value="Select tag {{ old('tag') }}">
+              @foreach ($tags as $item)
+                  <option value="{{ $item->id }}">{{ $item->tagName }}</option>
+              @endforeach
+          </select>
+              @error('tags_id')
+                <p class='m-0 small alert alert-danger shadow-sm'>{{$message}}</p>
+              @enderror
+      </div>
   
           <button class="btn btn-primary">Save New Post</button>
         </form>

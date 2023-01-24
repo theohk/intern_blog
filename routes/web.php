@@ -30,3 +30,4 @@ Route::get('/profile/{user:username}', [UserController::class, 'profile']);
 Route::get('/homepage', [UserController::class, 'showCorrectHomepage']);
 
 Route::get('/homepage',[PostController::class, 'index']);
+Route::get('/template',[UserController::class, 'template']);

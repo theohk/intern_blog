@@ -5,9 +5,11 @@
   
   <div class="container">
       <div class="col-md-12">
-        @foreach ($allPost as $posts)
+        @foreach ($post as $posts)
         <h1>{{$posts->username}}</h1>
-        <p>{{$posts->body}}</p>
+        <p>Title: {{$posts->title}}</p>
+        <p>Body: {{$posts->body}}</p>
+        <p>Tagname : {{$posts->tag->tagName}}</p>
         <p>Posted by {{$posts->user->username}}</p>
         <div>
         <span class="badge">Posted at {{\Carbon\Carbon::parse($posts->created_at)->format('j/n/Y')}}</span><div class="pull-right"><span class="label label-default">alice</span> <span class="label label-primary">story</span> <span class="label label-success">blog</span> <span class="label label-info">personal</span> <span class="label label-warning">Warning</span>
