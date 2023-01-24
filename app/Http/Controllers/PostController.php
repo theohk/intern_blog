@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\PostTag;
 use App\Models\Tag;
 use Illuminate\Support\Str;
 use DB;
@@ -20,27 +21,41 @@ class PostController extends Controller
     }
 
     public function index(Request $request){
-        $post = Post::all()->toQuery()->paginate(5);
+        $post = Post::with([
+            'user',
+            'postTags' => function ($q) {
+                $q->with('tag');
+            }
+        ])
+                ->orderBy('created_at', 'desc')->paginate(5);
 
         return view('homepage', compact('post'));
+        
     }
 
 
 
     public function storeNewPost(Request $request){
+        // dd($request->all());
         
         $data = $request->validate([
             'title' => 'required',
             'body' => 'required',
-            'tags_id' => 'required',
+            'tags_id' => 'required|array',
         ]);
 
         $data['title'] = strip_tags($data['title']);
         $data['body'] = strip_tags($data['body']);
         $data['user_id'] = auth()->id();
-        $data['tags_id'] = strip_tags($data['tags_id']);
-        $newPost = Post::create($data);
 
+        $newPost = Post::create($data);
+        
+        foreach ($request->tags_id as $tag) {
+            $postTag = new PostTag();
+            $postTag->post_id = $newPost->id;
+            $postTag->tag_id = $tag;
+            $postTag->save();
+        }
         return redirect("/post/{$newPost->id}")->with('success', 'Blog Successfully Posted');
     }
 

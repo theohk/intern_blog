@@ -18,11 +18,6 @@ class Tag extends Model
     protected $fillable = [
         'tagName'
     ];
-
-
-    public function post(){
-        return $this->hasMany(Post::class, 'tags_id');
-    }
 }
 
 

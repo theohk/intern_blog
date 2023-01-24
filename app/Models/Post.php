@@ -8,11 +8,47 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'body', 'user_id'];
+    protected $fillable = [
+        'title', 
+        'body', 
+        'user_id'
+    ];
+    
     public function user(){
         return $this->belongsTo(User::class, 'user_id');
     }
-    public function tag(){
-        return $this->belongsTo(Tag::class, 'tags_id');
+
+    public function postTags()
+    {
+        return $this->hasMany(PostTag::class);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -20,7 +20,7 @@
 
         <div class="mb-3">
           <label for="tagInput" class="form-label">Select tag</label>
-          <select name="tags_id" class="form-select" aria-label="Select tag" id="tagInput" value="Select tag {{ old('tag') }}">
+          <select name="tags_id[]" multiple class="form-select" aria-label="Select tag" id="tagInput" value="Select tag {{ old('tag') }}">
               @foreach ($tags as $item)
                   <option value="{{ $item->id }}">{{ $item->tagName }}</option>
               @endforeach
@@ -29,6 +29,10 @@
                 <p class='m-0 small alert alert-danger shadow-sm'>{{$message}}</p>
               @enderror
       </div>
+
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
   
           <button class="btn btn-primary">Save New Post</button>
         </form>
