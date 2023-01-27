@@ -6,24 +6,25 @@
         <form action="/create-post" method="POST">
         @csrf
           <div class="form-group">
-            <label for="post-title" class="text-dark mb-1"><h4>Title</h4></label>
+            <label for="post-title" class="text-dark mb-1"><h5>Title:</h5></label>
             <input value="{{old('title')}}" name="title" id="post-title" class="form-control form-control-lg" type="text" placeholder="" autocomplete="off" />
             @error('title')
             <p class='m-0 small alert alert-danger shadow-sm'>{{$message}}</p>
             @enderror
-        </div>
+        </div><br>
   
           <div class="form-group vh-50">
-            <label for="editor" class="text-dark mt-2 mb-1"><h4>Body Content</h4></label>
+            <label for="editor" class="text-dark mt-2 mb-1"><h5>Body Content:</h5></label>
             <textarea name="body" rows="8" id="editor" class="body-content tall-textarea form-control" type="text">{{old('body')}}</textarea>
             @error('body')
             <p class='m-0 small alert alert-danger shadow-sm'>{{$message}}</p>
             @enderror
         </div>
+        <br>
 
-        <div class="mb-3">
+        {{-- <div class="mb-3">
           <label for="tagInput" class="form-label">Select tag</label>
-          <select name="tags_id" multiple class="form-select" aria-label="Select tag" id="tagInput" value="Select tag {{ old('tag') }}">
+          <select name="tags_id[]" multiple="multiple" class="form-select" aria-label="Select tag" id="tagInput" value="Select tag {{ old('tag') }}">
               @foreach ($tags as $item)
                   <option value="{{ $item->id }}">{{ $item->tagName }}</option>
               @endforeach
@@ -31,8 +32,34 @@
               @error('tags_id')
                 <p class='m-0 small alert alert-danger shadow-sm'>{{$message}}</p>
               @enderror
+      </div> --}}
+
+      {{-- <div class="mb-3">
+        <div class="form-check form-switch">
+          @foreach ($tags as $item)
+          <input name="tags_id[]" class="form-check-input" type="checkbox" id="tagInput" value="{{ $item->id }}">         
+          <label class="form-check-label" for="flexSwitchCheckDefault" value="{{ $item->id }}">{{ $item->tagName }}</label>
+          <br>
+          @endforeach
+        </div>
+            @error('tags_id')
+              <p class='m-0 small alert alert-danger shadow-sm'>{{$message}}</p>
+            @enderror
+      </div> --}}
+
+      <div>
+        <h6>Select Tags: </h6>
+        <div class="row row-cols-auto">
+          @foreach ($tags as $item)
+          <div class="col">
+            <input name="tags_id[]" class="form-check-input" type="checkbox" id="tagInput" value="{{ $item->id }}">         
+            <label class="form-check-label" for="flexSwitchCheckDefault" value="{{ $item->id }}">{{ $item->tagName }}</label>
+          </div>
+          @endforeach
+        </div>
       </div>
-  
+      <br>
+
           <button class="btn btn-primary">Save New Post</button>
         </form>
       </div>
@@ -51,6 +78,7 @@
                                 console.error( error );
                         } );
         </script>
+
 @endsection
 
 </x-layout>

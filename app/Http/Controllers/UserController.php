@@ -2,16 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     //
 
-    public function profile(User $user) {
-        return view('profile-posts', ['username' => $user->username, 'posts' => $user->posts()->latest()->get(), 'postCount' => $user->posts()->count()]);
+    public function profile(Request $request) {
+        $post = Post::where('user_id', Auth::user()->id)->with([
+            'user',
+            'postTags' => function ($q) {
+                $q->with('tag');
+            }
+        ])
+                ->orderBy('created_at', 'desc')->paginate(10);
+                return view('profile-posts', compact('post'));
     }
 
     public function logout() {
@@ -20,16 +29,6 @@ class UserController extends Controller
 
     }
 
-    // public function showCorrectHomepage(User $user){
-    //     if(auth()->check()) {
-    //         $user = auth()->user();
-    //         return view('homepage-feed', ['postCount' => $user->posts()->count()]);
-    //     }
-    //     else {
-    //         return view('homepage');
-    //     }
-    // }
-
     public function showCorrectHomepage(User $user){
         if(auth()->check()) {
             $user = auth()->user();
@@ -37,8 +36,7 @@ class UserController extends Controller
         }
         else {
             return redirect()->action([PostController::class, 'index']);
-        }
-        
+        }  
     }
 
 
