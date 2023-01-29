@@ -14,6 +14,40 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     //
+    public function showEditForm(Post $post){
+        $tags = Tag::all();
+        return view('edit-post', ['post' => $post, 'tags' => $tags]);
+    }
+
+
+    
+
+    public function delete(Post $post) {
+        // if (auth()->user()->cannot('delete', $post)) {
+        //     return 'You cannot do that';
+        // }
+        $post->delete();
+
+        return redirect('/profile/' . auth()->user()->username)->with('success', 'Post successfully deleted');
+    }
+
+    public function postUpdate(Post $post, Request $request){
+        $data = $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+            'tags_id' => 'nullable|array'
+        ]);
+        $post->update($data);
+
+        foreach ($request->tags_id as $tag) {
+            $postTag = new PostTag();
+            $postTag->post_id = $post->id;
+            $postTag->tag_id = $tag;
+            $postTag->save();
+        }
+
+        return back()->with('success', 'Post successfully updated.');
+    }
 
     public function viewSinglePost(Post $post){
         $post['body'] = Str::markdown($post->body);
@@ -21,6 +55,10 @@ class PostController extends Controller
     }
 
     public function index(Request $request){
+        $title1 = DB::table('posts')->where('id', '21')->value('title');
+        $body1 = DB::table('posts')->where('id', '21')->value('body');
+        $title2 = DB::table('posts')->where('id', '25')->value('title');
+        $body2 = DB::table('posts')->where('id', '25')->value('body');
         $post = Post::with([
             'user',
             'postTags' => function ($q) {
@@ -29,7 +67,7 @@ class PostController extends Controller
         ])
                 ->orderBy('created_at', 'desc')->paginate(5);
 
-        return view('homepage', compact('post'));
+        return view('homepage', compact('post', 'title1', 'body1', 'title2', 'body2'));
         
     }
 

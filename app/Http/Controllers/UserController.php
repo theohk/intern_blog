@@ -25,7 +25,7 @@ class UserController extends Controller
 
     public function logout() {
         auth()->logout();
-        return redirect('/')->with('success', 'You are now logged out.');
+        return redirect('/homepage')->with('error', 'You are now logged out');
 
     }
 
@@ -56,7 +56,7 @@ class UserController extends Controller
             return redirect('/')->with('success', 'You have successfully logged in.');
         }
         else {
-            return redirect('/')->with('error', 'Invalid Login, please try again');
+            return redirect('/homepage')->with('error', 'Incorrect username or password, please try again');
 
         }
     }

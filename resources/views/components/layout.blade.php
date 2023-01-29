@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>FakteaApp</title>
+    <title>Blawg</title>
     {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" crossorigin="anonymous" /> --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> 
@@ -35,123 +35,244 @@
 
   </head>
 
-<body>
+<body class="d-flex flex-column" style="min-height: 100vh">
    <!-- Navbar -->
 
-<nav class="navbar navbar-expand-xl bg-light fixed-top">
-  <div class="container-fluid mx-5 g-5">
+<nav class="navbar navbar-expand-lg bg-white shadow-0">
+  <div class="container-fluid d-flex mx-5 g-5 justify-content-start">
     <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <i class="fas fa-bars"></i></button>
     <!-- Collapsible wrapper -->
     <!-- Navbar brand -->  
-    <div class="d-flex navbar-header">
-      <a class="navbar-brand mt-2 mt-lg-0" href="#">
-        <img src="{{url('/assets/images/logo.png')}}" height="35" alt="BLAWG" loading="lazy"/>
+      <a class="navbar-brand mt-2 mt-lg-0 d-flex" href="#">
+        <img class="imgg mt-1" src="{{url('/assets/images/logo.png')}}" height="35" alt="BLAWG" loading="lazy"/>
       </a>
-    </div>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">       
-      <!-- Left links -->
-      <ul class="nav justify-content-center navbar-nav mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/homepage">home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">about</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">pay me</a>
-        </li>
-      </ul>
-      <!-- Left links -->
-    </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">       
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/homepage">home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">about</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">pay me</a>
+          </li>
+        </ul>
+        <!-- Left links -->
+        <div class="d-flex">        
+          @auth
+            
+            <div class="d-flex">  
+              <!-- Profile thingy -->
+              <div class="dropdown me-3">
+                <a
+                  class="dropdown-toggle d-flex align-items-center hidden-arrow"
+                  href="#"
+                  id="navbarDropdownMenuAvatar"
+                  role="button"
+                  data-mdb-toggle="dropdown"
+                  aria-expanded="false"
+                  >
+                  <button class="btn text-dark align-middle">{{auth()->user()->username}}</button>
+                </a>
+                  <ul
+                    class="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="navbarDropdownMenuAvatar"
+                  >
+                    <li>
+                      <a class="dropdown-item" href="/profile/{{auth()->user()->username}}">My profile</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">Settings</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="/create-post">Post</a>
+                    </li>
+                    <li>
+                      <form action="/logout" method="POST" class="d-inline">
+                        @csrf
+                          <button class="dropdown-item">Sign Out</button>
+                      </form>
+                    </li>
+                  </ul>
+              </div>
+                  <!-- Profile thingy end-->
+              
+              {{-- <a class="btn shadow-0" href="/create-post">Post</a>
+                <form action="/logout" method="POST" class="d-inline">
+                @csrf
+                  <button class="btn shadow-0">Sign Out</button>
+                </form> --}}
+                {{-- button alternative ::::: btn-outline-dark btn-rounded me-5 --}}
+         
+            @else 
+    
+            {{-- <form action="/login" method="POST" class="mb-0 pt-2 pt-md-0">
+              @csrf
+              <div class="row align-items-center">
+                <div class="col-md-auto col-sm-2 col-xs-2 mr-0 pr-md-0 mb-3 mb-md-0">
+                  <input name="loginusername" class="form-control form-control-sm input-dark rounded-5" type="text" placeholder="Username" autocomplete="off" />
+                </div>
+                <div class="col-md-auto col-sm-2 col-xs-2 mr-0 pr-md-0 mb-3 mb-md-0">
+                  <input name="loginpassword" class="form-control form-control-sm input-dark rounded-5" type="password" placeholder="Password" />
+                </div>
+                <div class="col-md-auto">
+                  <button class="btn">Sign In</button>
+                </div>
+            </form>  --}}
+    
+            {{-- <a class="col-md-auto mr-0 pr-md-0 mb-3 mb-md-0" href="/register">  
+              <button type="submit" class="btn">Register</button>
+            </a> --}}
+    
+            {{-- <div class="dropdown col-md-auto">
+              <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                Login
+              </button>
+              <form action="/login" method="POST" class="dropdown-menu p-4 mx-0 my-0">
+                @csrf
+                <div class="mb-3">
+                  <label for="exampleDropdownFormEmail2" class="col-form-label">Email address</label>
+                  <input name="loginusername" type="text" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleDropdownFormPassword2" class="col-form-label">Password</label>
+                  <input name="loginpassword" type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-primary">Sign in</button>
+              </form>
+            </div> --}}
+    
+            <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content g-3 p-3">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalToggleLabel">Log In</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="/login" method="POST" class="mx-0 my-0">
+                      @csrf
+                      <div class="mb-3">
+                        <label for="exampleDropdownFormEmail2" class="col-form-label">Username</label>
+                        <input name="loginusername" type="text" class="form-control" id="exampleDropdownFormEmail2" placeholder="Write your username here">
+                        @error('loginusername')
+                          <p class="m-0 small alert alert-danger shadow-sm">{{$message}}</p>
+                        @enderror
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleDropdownFormPassword2" class="col-form-label">Password</label>
+                        <input name="loginpassword" type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Write your password here">
+                        @error('loginpassword')
+                          <p class="m-0 small alert alert-danger shadow-sm">{{$message}}</p>
+                        @enderror
+                      </div>
+                      No account? <a href="" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Create an Account!</a>
+                      <br>
+                      <div class="pt-4">
+                        <button type="submit" class="btn btn-primary">Sign in</button>
+                      </div>
+                    
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalToggleLabel2">Sign Up</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="/register" method="POST" id="registration-form">
+                      @csrf
+                      <div class="form-group">
+                        <label for="username-register" class="text-muted mb-1"><small>Username</small></label>
+                        <input name="username" value="{{old('username')}}" id="username-register" class="form-control" type="text" placeholder="Pick a username" autocomplete="off" />
+                        @error('username')
+                        <p class="m-0 small alert alert-danger shadow-sm">{{$message}}</p>
+                        @enderror
+                      </div><br>
+          
+                      <div class="form-group">
+                        <label for="email-register" class="text-muted mb-1"><small>Email</small></label>
+                        <input name="email" value="{{old('email')}}" id="email-register" class="form-control" type="text" placeholder="you@example.com" autocomplete="off" />
+                        @error('email')
+                        <p class="m-0 small alert alert-danger shadow-sm">{{$message}}</p>
+                        @enderror
+                      </div><br>
+          
+                      <div class="form-group">
+                        <label for="password-register" class="text-muted mb-1"><small>Password</small></label>
+                        <input name="password" id="password-register" class="form-control" type="password" placeholder="Create a password" />
+                        @error('password')
+                        <p class="m-0 small alert alert-danger shadow-sm">{{$message}}</p>
+                        @enderror
+                      </div><br>
+          
+                      <div class="form-group">
+                        <label for="password-register-confirm" class="text-muted mb-1"><small>Confirm Password</small></label>
+                        <input name="password_confirmation" id="password-register-confirm" class="form-control" type="password" placeholder="Confirm password" />
+                        @error('password_confirmation')
+                        <p class="m-0 small alert alert-danger shadow-sm">{{$message}}</p>
+                        @enderror
+                      </div><br>
+                      Already have an account? <a href="" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Sign In!</a>
+                      <div class="pt-4">
+                        <button type="submit" class="btn btn-primary">Sign up</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a class="btn shadow-0" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Login</a>
+              
+          @endauth                  
+        </div>
+      </div>
+
+    
 
     <!--Right elements-->
-    <div class="d-flex nav navbar-nav navbar-right">        
-      @auth
-        
-        <div class="d-flex align-items-center">  
-          <!-- Profile thingy -->
-          <div class="dropdown me-3">
-            <a
-              class="dropdown-toggle d-flex align-items-center hidden-arrow hover-zoom border border-1 rounded border-primary border-opacity-25"
-              href="#"
-              id="navbarDropdownMenuAvatar"
-              role="button"
-              data-mdb-toggle="dropdown"
-              aria-expanded="false"
-              >
-            <img
-              src="{{url('/assets/images/avatar2.png')}}"
-              class="rounded"
-              height="30"
-              alt="Black and White Portrait of a Man"
-              loading="lazy"
-            />
-            </a>
-              <ul
-                class="dropdown-menu dropdown-menu-end"
-                aria-labelledby="navbarDropdownMenuAvatar"
-              >
-                <li>
-                  <a class="dropdown-item" href="/profile/{{auth()->user()->username}}">My profile</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">Settings</a>
-                </li>
-              </ul>
-          </div>
-              <!-- Profile thingy end-->
-          
-          <a class="btn" href="/create-post">Post</a>
-            <form action="/logout" method="POST" class="d-inline">
-            @csrf
-              <button class="btn me-5">Sign Out</button>
-            </form>
-            {{-- button alternative ::::: btn-outline-dark btn-rounded me-5 --}}
-      
-      @else 
-
-        <form action="/login" method="POST" class="mb-0 pt-2 pt-md-0">
-          @csrf
-          <div class="row align-items-center">
-            <div class="col-md-auto col-sm-2 col-xs-2 mr-0 pr-md-0 mb-3 mb-md-0">
-              <input name="loginusername" class="form-control form-control-sm input-dark rounded-5" type="text" placeholder="Username" autocomplete="off" />
-            </div>
-            <div class="col-md-auto col-sm-2 col-xs-2 mr-0 pr-md-0 mb-3 mb-md-0">
-              <input name="loginpassword" class="form-control form-control-sm input-dark rounded-5" type="password" placeholder="Password" />
-            </div>
-            <div class="col-md-auto">
-              <button class="btn">Sign In</button>
-            </div>
-          </form> 
-          <a class="col-md-auto mr-0 pr-md-0 mb-3 mb-md-0" href="/register">  
-            <button type="submit" class="btn">Register</button>
-          </a>  
-          
-      @endauth                  
-    </div>
+    
   </div>  
 </nav>
 <!-- Navbar -->
 
     @if (session()->has('success'))
-      <div class="container container--narrow">
-        <div class="alert alert-success text-center">
-          {{session('success')}}
+      
+      {{-- <p class="alert alert-success text-center">
+        {{session('success')}}
+      </p> --}}
+      <div class="d-flex justify-content-center row">
+      <div class="d-flex col-md-4 alert alert-primary alert-dismissible fade show justify-content-center text-center" role="alert">
+        <div class="text-center">
+        {{session('success')}}
         </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
       </div>
     @endif
 
     @if (session()->has('error'))
-      <div class="container container--narrow">
-        <div class="alert alert-danger text-center">
+    <div class="d-flex justify-content-center row">
+      <div class="alert alert-warning d-flex col-md-4 alert-dismissible fade show justify-content-center text-center" role="alert">
+        <div class="text-center">
           {{session('error')}}
         </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
+    </div>
+      
     @endif
 
     {{$slot}}
     
-    <footer class="mt-auto" style="background-color: #343A40;">
+    <footer class="footer" style="background-color: #343A40;">
       <div class="container p-2">
         <div class="row">
           <div class="col-lg-6 col-md-12 mb-2">
