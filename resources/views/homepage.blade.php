@@ -24,7 +24,7 @@
     <link href="blog.css" rel="stylesheet">
   </head>
     
-<div class="mx-5 my-5">
+<div class="">
   {{-- <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
     <div class="col-md-6 px-0">
       <h1 class="display-4 fst-italic">Ngeiha and Pu Zoramthanga are finally back together!</h1>

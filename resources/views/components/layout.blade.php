@@ -39,7 +39,7 @@
    <!-- Navbar -->
 
 <nav class="navbar navbar-expand-lg bg-white shadow-0">
-  <div class="container-fluid d-flex mx-5 g-5 justify-content-start">
+  <div class="container-fluid d-flex justify-content-start mx-3 g-2 ">
     <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <i class="fas fa-bars"></i></button>
     <!-- Collapsible wrapper -->
     <!-- Navbar brand -->  
@@ -60,7 +60,7 @@
           </li>
         </ul>
         <!-- Left links -->
-        <div class="d-flex">        
+        <div class="d-flex justify-content-end">        
           @auth
             
             <div class="d-flex">  
@@ -273,50 +273,37 @@
     {{$slot}}
     
     <footer class="footer" style="background-color: #343A40;">
-      <div class="container p-2">
-        <div class="row">
-          <div class="col-lg-6 col-md-12 mb-2">
-            <h5 class="mb-3 mt-2 text-white">footer content</h5>
-            <p style="color: #9b9b9b;">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-              molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam
-              voluptatem veniam, est atque cumque eum delectus sint!
-            </p>
-          </div>
-          <div class="col-lg-3 col-md-6 mb-2">
-            <h5 class="mb-3 mt-2 text-white">links</h5>
-            <ul class="list-unstyled mb-0">
-              <li class="mb-1">
-                <a href="#!" style="color: #9b9b9b;">FAQ</a>
-              </li>
-              <li class="mb-1">
-                <a href="#!" style="color: #9b9b9b;">Classes</a>
-              </li>
-              <li class="mb-1">
-                <a href="#!" style="color: #9b9b9b;">Pricing</a>
-              </li>
-              <li>
-                <a href="#!" style="color: #9b9b9b;">Safety</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-lg-3 col-md-6 mb-2">
-            <h5 class="mb-1 mt-2 text-white">opening hours</h5>
-            <table class="table" style="border-color: #666;">
-              <tbody style="color: #9b9b9b;">
-                <tr>
-                  <td>Mon - Fri:</td>
-                  <td>8am - 9pm</td>
-                </tr>
-                <tr>
-                  <td>Sat - Sun:</td>
-                  <td>8am - 1am</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+      <section class="d-flex justify-content-center p-2">
+        <!-- Left -->
+        <div class="ms-2 me-4 d-none d-lg-block">
+          <span style="color: #9b9b9b;">Get connected with us on social networks:</span>
         </div>
-      </div>
+      </section>
+        <!-- Left -->
+        <section class="d-flex justify-content-center p-2">
+        <!-- Right -->
+        <div class="d-flex">
+          <a href="" class="me-4 link-secondary">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="" class="me-4 link-secondary">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="" class="me-4 link-secondary">
+            <i class="fab fa-google"></i>
+          </a>
+          <a href="" class="me-4 link-secondary">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/lalfakzuala-hk-21143512b/" class="me-4 link-secondary">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://github.com/theohk/" class="me-4 link-secondary">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+        <!-- Right -->
+      </section>
       <div class="text-center p-1 text-white" style="background-color: rgba(0, 0, 0, 0.2);">
         © 2023 Copyright:
         <a style="color: #9b9b9b;" href="https://github.com/theohk/">Faktea Hk</a>
