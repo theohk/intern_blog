@@ -43,7 +43,7 @@
     <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <i class="fas fa-bars"></i></button>
     <!-- Collapsible wrapper -->
     <!-- Navbar brand -->  
-      <a class="navbar-brand mt-2 mt-lg-0 d-flex" href="#">
+      <a class="navbar-brand mt-2 mt-lg-0 d-flex" href="/homepage">
         <img class="imgg mt-1" src="{{url('/assets/images/logo.png')}}" height="35" alt="BLAWG" loading="lazy"/>
       </a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">       
@@ -60,7 +60,7 @@
           </li>
         </ul>
         <!-- Left links -->
-        <div class="d-flex justify-content-end">        
+        <div class="d-flex justify-content-start">        
           @auth
             
             <div class="d-flex">  
@@ -77,7 +77,7 @@
                   <button class="btn text-dark align-middle">{{auth()->user()->username}}</button>
                 </a>
                   <ul
-                    class="dropdown-menu dropdown-menu-end"
+                    class="dropdown-menu dropdown-menu-start dropdown-menu-lg-end"
                     aria-labelledby="navbarDropdownMenuAvatar"
                   >
                     <li>
@@ -275,7 +275,7 @@
     <footer class="footer" style="background-color: #343A40;">
       <section class="d-flex justify-content-center p-2">
         <!-- Left -->
-        <div class="ms-2 me-4 d-none d-lg-block">
+        <div class="ms-2 me-4 d-lg-block">
           <span style="color: #9b9b9b;">Get connected with us on social networks:</span>
         </div>
       </section>

@@ -20,6 +20,8 @@ Route::get('/register', [UserController::class, "userRegister" ])->middleware('g
 Route::post('/register', [UserController::class, "register" ])->middleware('guest');
 Route::post('/login', [UserController::class, "login" ])->middleware('guest');
 Route::post('/logout', [UserController::class, "logout" ])->middleware('mustBeLoggedIn');
+Route::get('/manage-avatar', [UserController::class, 'showAvatarForm']);
+Route::post('/manage-avatar', [UserController::class, 'storeAvatar']);
 
 //Blog post related routes
 Route::get('/create-post', [PostController::class, "showCreateForm" ])->middleware('mustBeLoggedIn');
@@ -31,6 +33,8 @@ Route::put('/post/{post}', [PostController::class, "postUpdate"])->middleware('c
 
 // Profile related routes
 Route::get('/profile/{user:username}', [UserController::class, 'profile']);
+Route::get('/profiles/{user:username}', [UserController::class, 'profile1']);
+
 Route::get('/homepage', [UserController::class, 'showCorrectHomepage']);
 
 Route::get('/homepage',[PostController::class, 'index']);

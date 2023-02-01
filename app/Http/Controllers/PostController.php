@@ -71,8 +71,6 @@ class PostController extends Controller
         
     }
 
-
-
     public function storeNewPost(Request $request){
         // dd($request->all());
         

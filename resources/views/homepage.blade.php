@@ -33,7 +33,7 @@
     </div>
   </div> --}}
   
-  <div class="container g-5">
+  <div class="container g-0">
     <div class="d-flex flex-column">
       <div class="row mb-2 d-flex">
         <div class="col-md-6">
@@ -65,53 +65,55 @@
         </div>
       </div>
 
-
-      <h3 class="mb-4 text-center fst-italic border-bottom">
-        From the Firehose
-      </h3>
-        
-      <div class="container-sm pt-3">
-        <div class="row">
-          @foreach($post as $posts)
-            <div class="col-md-12">
-              <a href="/post/{{$posts->id}}" class="list-group-item list-group-item-action p-1">
-                <div class="d-flex justify-content-center bd-highlight">
+      <div class="row mb-2 d-flex">
+        <div class="col-md-8">
+        <h3 class="mb-4 text-center fst-italic border-bottom">
+          From the Firehose
+        </h3>
+          
+        <div class="container-sm pt-3">
+          <div class="row">
+            @foreach($post as $posts)
+              <div class="col-md-12">
+                <a href="/post/{{$posts->id}}" class="list-group-item list-group-item-action p-1">
+                  <div class="d-flex justify-content-center bd-highlight">
+                    <div class="bd-highlight">
+                      <strong style="font-size: 1.5em;">{{$posts->title}}</strong>
+                    </div>
+                  </div>
+                </a>
+                <div class="d-flex justify-content-center bd-highlight mb-1">
                   <div class="bd-highlight">
-                    <strong style="font-size: 1.5em;">{{$posts->title}}</strong>
+                    <tt style="font-size: 0.875em;">Posted on {{$posts->created_at->format('d M')}} by {{$posts->user->username}}</tt>
                   </div>
                 </div>
-              </a>
-              <div class="d-flex justify-content-center bd-highlight mb-1">
-                <div class="bd-highlight">
-                  <tt style="font-size: 0.875em;">Posted on {{$posts->created_at->format('d M')}} by {{$posts->user->username}}</tt>
-                </div>
-              </div>
 
-              <div class="d-flex justify-content-center bd-highlight me-2">
-                @foreach($posts->postTags as $postTags)
-                <span class="badge badge-pill badge-info">
-                  {{$postTags->tag->tagName}} 
-                </span>
-                <span style="margin-left:0.5em"></span>
-                @endforeach     
-              </div>
-              
-              <div class="d-flex justify-content-left bd-highlight me-2">
-                <div class="body-content p-1">
-                  {!! Str::limit($posts->body, 400) !!} <a href="/post/{{$posts->id}}" style="font-size: 0.875em;">read more</a>
+                <div class="d-flex justify-content-center bd-highlight me-2">
+                  @foreach($posts->postTags as $postTags)
+                  <span class="badge badge-pill badge-info">
+                    {{$postTags->tag->tagName}} 
+                  </span>
+                  <span style="margin-left:0.5em"></span>
+                  @endforeach     
+                </div>
+                
+                <div class="d-flex justify-content-left bd-highlight me-2">
+                  <div class="body-content p-1">
+                    {!! Str::limit($posts->body, 400) !!} <a href="/post/{{$posts->id}}" style="font-size: 0.875em;">read more</a>
+                  </div>
                 </div>
               </div>
-            </div>
-            <hr>  
-          @endforeach
+              <hr>  
+            @endforeach
+          </div>
+          <div class="d-flex justify-content-left">
+            {!! $post->links('pagination::bootstrap-5') !!}
+          </div>
+          {{-- <nav class="blog-pagination" aria-label="Pagination">
+            <a class="btn btn-outline-primary" href="#">Older</a>
+            <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
+          </nav> --}}
         </div>
-        <div class="d-flex justify-content-left">
-          {!! $post->links('pagination::bootstrap-5') !!}
-        </div>
-        {{-- <nav class="blog-pagination" aria-label="Pagination">
-          <a class="btn btn-outline-primary" href="#">Older</a>
-          <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
-        </nav> --}}
       </div>
     </div>
   </div>

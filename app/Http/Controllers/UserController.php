@@ -7,12 +7,14 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
     //
 
-    public function profile(Request $request) {
+    public function profile1(Request $request) {
         $post = Post::where('user_id', Auth::user()->id)->with([
             'user',
             'postTags' => function ($q) {
@@ -21,6 +23,39 @@ class UserController extends Controller
         ])
                 ->orderBy('created_at', 'desc')->paginate(10);
                 return view('profile-posts', compact('post'));
+    }
+    
+    public function storeAvatar(Request $request) {
+        $request->validate([
+            'avatar' => 'required|image|max:3000'
+        ]);
+
+        $user = auth()->user();
+
+        $filename  = $user->id . '-' . uniqid() . '.jpg';
+
+        $imgData = Image::make($request->file('avatar'))->fit(120)->encode('jpg');
+        Storage::put('public/avatars/' . $filename, $imgData);
+
+        $oldAvatar = $user->avatar;
+
+        $user->avatar = $filename;
+        $user->save();
+
+        if($oldAvatar != "/fallback-avatar.jpg") {
+            Storage::delete(str_replace("/storage/", "public/", $oldAvatar));
+        }
+
+        return redirect('/profile/' . auth()->user()->username)->with('success', 'Congrats on your new avatar');
+
+    }
+
+    public function showAvatarForm() {
+        return view('avatar-form');
+    }
+
+    public function profile(User $user) {
+        return view('profile-posts2', [ 'avatar' => $user->avatar, 'username' => $user->username, 'posts' => $user->posts()->latest()->paginate(10), 'postCount' => $user->posts()->count()]);
     }
 
     public function logout() {
@@ -38,7 +73,6 @@ class UserController extends Controller
             return redirect()->action([PostController::class, 'index']);
         }  
     }
-
 
     public function template(){
              return view('template');
