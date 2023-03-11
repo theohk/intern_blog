@@ -9,12 +9,13 @@ class Post extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'title', 
-        'body', 
+        'title',
+        'body',
         'user_id'
     ];
-    
-    public function user(){
+
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
 
@@ -23,32 +24,3 @@ class Post extends Model
         return $this->hasMany(PostTag::class);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

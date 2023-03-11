@@ -14,15 +14,17 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     //
-    public function showEditForm(Post $post){
+    public function showEditForm(Post $post)
+    {
         $tags = Tag::all();
         return view('edit-post', ['post' => $post, 'tags' => $tags]);
     }
 
 
-    
 
-    public function delete(Post $post) {
+
+    public function delete(Post $post)
+    {
         // if (auth()->user()->cannot('delete', $post)) {
         //     return 'You cannot do that';
         // }
@@ -31,7 +33,8 @@ class PostController extends Controller
         return redirect('/profile/' . auth()->user()->username)->with('success', 'Post successfully deleted');
     }
 
-    public function postUpdate(Post $post, Request $request){
+    public function postUpdate(Post $post, Request $request)
+    {
         $data = $request->validate([
             'title' => 'required',
             'body' => 'required',
@@ -49,12 +52,14 @@ class PostController extends Controller
         return back()->with('success', 'Post successfully updated.');
     }
 
-    public function viewSinglePost(Post $post){
+    public function viewSinglePost(Post $post)
+    {
         $post['body'] = Str::markdown($post->body);
         return view('single-post', ['post' => $post]);
     }
 
-    public function index(Request $request){
+    public function index(Request $request)
+    {
         $title1 = DB::table('posts')->where('id', '21')->value('title');
         $body1 = DB::table('posts')->where('id', '21')->value('body');
         $title2 = DB::table('posts')->where('id', '25')->value('title');
@@ -65,15 +70,15 @@ class PostController extends Controller
                 $q->with('tag');
             }
         ])
-                ->orderBy('created_at', 'desc')->paginate(5);
+            ->orderBy('created_at', 'desc')->paginate(5);
 
         return view('homepage', compact('post', 'title1', 'body1', 'title2', 'body2'));
-        
     }
 
-    public function storeNewPost(Request $request){
+    public function storeNewPost(Request $request)
+    {
         // dd($request->all());
-        
+
         $data = $request->validate([
             'title' => 'required',
             'body' => 'required',
@@ -85,7 +90,7 @@ class PostController extends Controller
         $data['user_id'] = auth()->id();
 
         $newPost = Post::create($data);
-        
+
         foreach ($request->tags_id as $tag) {
             $postTag = new PostTag();
             $postTag->post_id = $newPost->id;
@@ -118,10 +123,10 @@ class PostController extends Controller
     //     return redirect("/profile/{user:username}")->with('success', 'Blog Successfully Posted');
     // }
 
-    
-    public function showCreateForm(Request $request){
+
+    public function showCreateForm(Request $request)
+    {
         $tags = Tag::all();
         return view('create-post', compact('tags'));
-        
     }
 }

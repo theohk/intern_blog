@@ -9,7 +9,7 @@ class Tag extends Model
 {
     use HasFactory;
 
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -19,5 +19,3 @@ class Tag extends Model
         'tagName'
     ];
 }
-
-

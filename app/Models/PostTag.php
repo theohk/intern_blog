@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class PostTag extends Model
 {
     use HasFactory;
-    
-    public function tag(){
+
+    public function tag()
+    {
         return $this->belongsTo(Tag::class);
     }
 }
-

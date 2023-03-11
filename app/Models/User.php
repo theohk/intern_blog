@@ -26,8 +26,9 @@ class User extends Authenticatable
         'password',
     ];
 
-    protected function avatar(): Attribute {
-        return Attribute::make(get: function($value){
+    protected function avatar(): Attribute
+    {
+        return Attribute::make(get: function ($value) {
             return $value ? '/storage/avatars/' . $value : '/fallback-avatar.jpg';
         });
     }
@@ -51,7 +52,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function posts(){
+    public function posts()
+    {
         return $this->hasMany(Post::class, 'user_id');
     }
 }
