@@ -82,7 +82,7 @@
                   </div>
 
                   <div class="row mb-2 d-flex">
-                      <div class="col-md-8">
+                      <div class="col-md-12">
                           <h3 class="mb-4 text-center fst-italic border-bottom">
                               From the Firehose
                           </h3>
