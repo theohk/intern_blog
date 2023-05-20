@@ -25,35 +25,24 @@
       </head>
 
       <div class="">
-          {{-- <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
-    <div class="col-md-6 px-0">
-      <h1 class="display-4 fst-italic">Ngeiha and Pu Zoramthanga are finally back together!</h1>
-      <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
-      <p class="lead mb-0"><a href="#" class="fw-bold">Continue reading...</a></p>
-    </div>
-  </div> --}}
+          <div class="p-4 p-md-5 mb-4 text-white rounded bg-light">
+              <div class="row px-0 d-flex">
+                  <h1 class="display-4 fst-italic text-dark text-center">Welcome to Blawg! The place to be for inquisitive minds</h1>
+                  <p class="text-dark text-center">Everything and everything can be said here. No restrictions. Write what you will, say what you wish. It's all on you, to your heart's content. Write away!</p>
+              </div>
+          </div>
 
           <div class="container g-0">
-              <div class="d-flex flex-column">
-                  <div class="row mb-2 d-flex">
+              <div class="">
+                  <div class="row mb-2 d-flex align-items-stretch">
                       <div class="col-md-6">
                           <div
                               class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                               <div class="col p-4 d-flex flex-column position-static">
-                                  <strong class="d-inline-block mb-2 text-primary">World</strong>
+                                  {{-- <strong class="d-inline-block mb-2 text-primary">World</strong> --}}
                                   <h3 class="mb-0">{{ $title1 }}</h3>
                                   <p class="card-text mb-auto">{!! Str::limit($body1, 100) !!}</p>
                                   <a href="/post/21" class="stretched-link">Continue reading</a>
-                              </div>
-                              <div class="col-auto d-none d-lg-block">
-                                  <svg class="bd-placeholder-img" width="200" height="250"
-                                      xmlns="http://www.w3.org/2000/svg" role="img"
-                                      aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
-                                      focusable="false">
-                                      <title>Placeholder</title>
-                                      <rect width="100%" height="100%" fill="#55595c" /><text x="50%"
-                                          y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                                  </svg>
                               </div>
                           </div>
                       </div>
@@ -61,21 +50,10 @@
                           <div
                               class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                               <div class="col p-4 d-flex flex-column position-static">
-                                  <strong class="d-inline-block mb-2 text-success">Design</strong>
+                                  {{-- <strong class="d-inline-block mb-2 text-success">Design</strong> --}}
                                   <h3 class="mb-0">{{ $title2 }}</h3>
                                   <p class="mb-auto">{!! Str::limit($body2, 100) !!}</p>
                                   <a href="post/25" class="stretched-link">Continue reading</a>
-                              </div>
-                              <div class="col-auto d-none d-lg-block">
-                                  <svg class="bd-placeholder-img" width="200" height="250"
-                                      xmlns="http://www.w3.org/2000/svg" role="img"
-                                      aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
-                                      focusable="false">
-                                      <title>Placeholder</title>
-                                      <rect width="100%" height="100%" fill="#55595c" /><text x="50%"
-                                          y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                                  </svg>
-
                               </div>
                           </div>
                       </div>
@@ -87,7 +65,7 @@
                               From the Firehose
                           </h3>
 
-                          <div class="container-sm pt-3">
+                          <div class="container-sm pt-3 justify-content-center">
                               <div class="row">
                                   @foreach ($post as $posts)
                                       <div class="col-md-12">
@@ -118,7 +96,7 @@
 
                                           <div class="d-flex justify-content-left bd-highlight me-2">
                                               <div class="body-content p-1">
-                                                  {!! Str::limit($posts->body, 400) !!} <a href="/post/{{ $posts->id }}"
+                                                  {!! Str::limit($posts->body, 500) !!} <a href="/post/{{ $posts->id }}"
                                                       style="font-size: 0.875em;">read more</a>
                                               </div>
                                           </div>

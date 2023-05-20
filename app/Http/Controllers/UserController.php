@@ -92,7 +92,7 @@ class UserController extends Controller
 
         if (auth()->attempt(['username' => $data['loginusername'], 'password' => $data['loginpassword']])) {
             $request->session()->regenerate();
-            return redirect('/')->with('success', 'You have successfully logged in.');
+            return redirect('/homepage')->with('success', 'You have successfully logged in.');
         } else {
             return redirect('/homepage')->with('error', 'Incorrect username or password, please try again');
         }

@@ -51,11 +51,11 @@
                         <a class="nav-link active" aria-current="page" href="/homepage">home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">about</a>
+                        <a class="nav-link" href="/about">about</a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="#">pay me</a>
-                    </li>
+                    </li> --}}
                 </ul>
                 <!-- Left links -->
                 <div class="d-flex justify-content-start">

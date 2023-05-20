@@ -31,18 +31,18 @@
             <br>
 
             <div>
-                <h6>Select Tags: </h6>
-                <div class="row row-cols-auto">
-                    @foreach ($tags as $item)
-                        <div class="col">
-                            <input name="tags_id[]" class="form-check-input" type="checkbox" id="tagInput"
-                                value="{{ $item->id }}">
-                            <label class="form-check-label" for="flexSwitchCheckDefault"
-                                value="{{ $item->id }}">{{ $item->tagName }}</label>
-                        </div>
-                    @endforeach
-                </div>
+    <h6>Select Tags: </h6>
+    <div class="row row-cols-auto">
+        @foreach ($tags as $key => $item)
+            <div class="col">
+                <input name="tags_id[]" class="form-check-input" type="checkbox" id="tagInput"
+                    value="{{ $item->id }}" @if($key === 0) checked @endif>
+                <label class="form-check-label" for="flexSwitchCheckDefault"
+                    value="{{ $item->id }}">{{ $item->tagName }}</label>
             </div>
+        @endforeach
+        </div>
+    </div>
 
             <br>
 

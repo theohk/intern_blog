@@ -41,14 +41,17 @@ class PostController extends Controller
             'tags_id' => 'nullable|array'
         ]);
         $post->update($data);
-
+    
+        // Delete previous PostTag
+        $post->postTags()->delete();
+    
         foreach ($request->tags_id as $tag) {
             $postTag = new PostTag();
             $postTag->post_id = $post->id;
             $postTag->tag_id = $tag;
             $postTag->save();
         }
-
+    
         return back()->with('success', 'Post successfully updated.');
     }
 
@@ -128,5 +131,10 @@ class PostController extends Controller
     {
         $tags = Tag::all();
         return view('create-post', compact('tags'));
+    }
+
+     public function about()
+    {
+        return view('about');
     }
 }
