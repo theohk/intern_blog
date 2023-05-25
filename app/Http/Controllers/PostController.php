@@ -21,7 +21,10 @@ class PostController extends Controller
     }
 
 
-
+    public function filteredposts()
+    {
+        return view('filteredposts');
+    }
 
     public function delete(Post $post)
     {
@@ -73,7 +76,7 @@ class PostController extends Controller
                 $q->with('tag');
             }
         ])
-            ->orderBy('created_at', 'desc')->paginate(5);
+            ->orderBy('created_at', 'desc')->paginate(6);
 
         return view('homepage', compact('post', 'title1', 'body1', 'title2', 'body2'));
     }

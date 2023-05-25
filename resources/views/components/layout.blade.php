@@ -13,8 +13,6 @@
     </script>
     <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" phpcrossorigin="anonymous"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="/main.css" />
@@ -26,29 +24,53 @@
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet" />
 
+    <!-- Font for logo deuhreuh -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=Playfair:wght@300&display=swap"
+        rel="stylesheet">
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
 
 </head>
 
+
 <body class="d-flex flex-column" style="min-height: 100vh">
     <!-- Navbar -->
 
-    <nav class="navbar navbar-expand-lg bg-white shadow-0">
-        <div class="container-fluid d-flex justify-content-start mx-3 g-2 ">
-            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
-                data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation"> <i class="fas fa-bars"></i></button>
-            <!-- Collapsible wrapper -->
-            <!-- Navbar brand -->
+    <nav class="navbar navbar-expand-sm bg-white shadow-4 mx-5">
+        <div class="container-fluid d-flex justify-content-start mx-5 g-2">
+            {{-- <a class="navbar-brand mt-2 mt-lg-0 d-flex ms-5" href="/homepage">
+                BLAWG
+            </a> --}}
             <a class="navbar-brand mt-2 mt-lg-0 d-flex" href="/homepage">
                 <img class="imgg mt-1" src="{{ url('/assets/images/logo.png') }}" height="35" alt="BLAWG"
                     loading="lazy" />
-            </a>
+            </a>    
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
                 <!-- Left links -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/homepage">home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            categories
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Music</a></li>
+                            <li><a class="dropdown-item" href="#">Politics</a></li>
+                            <li><a class="dropdown-item" href="#">Travel</a></li>
+                            <li><a class="dropdown-item" href="#">Technology</a></li>
+                            <li><a class="dropdown-item" href="#">Food</a></li>
+                            <li><a class="dropdown-item" href="#">Motivational</a></li>
+                            <li><a class="dropdown-item" href="#">Gaming</a></li>
+                            <li><a class="dropdown-item" href="#">Philosophy</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/about">about</a>
@@ -76,10 +98,7 @@
                                             profile</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="#">Settings</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="/create-post">Post</a>
+                                        <a class="dropdown-item" href="/create-post">Create Post</a>
                                     </li>
                                     <li>
                                         <form action="/logout" method="POST" class="d-inline">

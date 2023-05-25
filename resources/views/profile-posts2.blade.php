@@ -22,12 +22,18 @@
 
         <div class="list-group">
             @foreach ($posts as $post)
-                <a href="/post/{{ $post->id }}" class="list-group-item list-group-item-action">
+                <a href="/post/{{ $post->id }}" class="list-group-item d-flex">
                     {{-- <img class="avatar-tiny" src="{{$post->user->avatar}}" /> --}}
-                    <strong>{{ $post->title }}</strong> on {{ $post->created_at->format('n/j/Y') }}
+                    <i class="">{{ $post->created_at->format('n/j/Y') }}&nbsp;&nbsp;&nbsp;</i>
+                    <strong class="me-auto">{{ $post->title }}</strong>  
+                    
                     @foreach ($post->postTags as $postTags)
-                        {{ $postTags->tag->tagName }}
+                        <span class="badge badge-pill badge-info justfiy-content-right">
+                            {{ $postTags->tag->tagName }}
+                        </span>
+                        &nbsp;&nbsp;
                     @endforeach
+
                 </a>
             @endforeach
         </div>

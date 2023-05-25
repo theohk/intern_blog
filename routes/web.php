@@ -35,6 +35,8 @@ Route::put('/post/{post}', [PostController::class, "postUpdate"])->middleware('c
 Route::get('/profile/{user:username}', [UserController::class, 'profile']);
 Route::get('/profiles/{user:username}', [UserController::class, 'profile1']);
 
+Route::get('/filteredposts', [PostController::class, 'filteredposts']);
+
 Route::get('/homepage', [UserController::class, 'showCorrectHomepage']);
 Route::get('/about', [PostController::class, 'about']);
 
